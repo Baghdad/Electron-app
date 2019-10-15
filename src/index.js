@@ -15,7 +15,7 @@ function createWindow () {
     win.loadFile(`${__dirname}/renderer/index.html`);
 
     let getData = () => {
-        exec(`dotnet ${__dirname}/netcoreapp2.1/publish/InternalToolsDeveloperFsharpCheck.dll`, (error, stdout) => {
+        exec(`dotnet ${__dirname}/netcoreapp3.0/InternalToolsDeveloperFsharpCheck.dll`, (error, stdout) => {
             if (error) {
                 throw error;
             }
