@@ -1,6 +1,11 @@
 const { exec } = require('child_process');
 const { app, ipcMain, BrowserWindow } = require('electron');
 
+// Workaround for Windows installation process
+// https://www.electronforge.io/config/makers/squirrel.windows
+if (require('electron-squirrel-startup')) return app.quit();
+
+// Workaround for unix to help it find dotnet command
 const isWin = /^win/.test(process.platform);
 
 if (!isWin) {
@@ -45,6 +50,7 @@ function createWindow () {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
+    // Small tweak to leave the application in the dock
     if (process.platform !== 'darwin') {
         app.quit();
     }
