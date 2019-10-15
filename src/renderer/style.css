@@ -24,7 +24,7 @@ body {
 
 #mainTable tbody {
     height: calc(100vh - 120px);
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #mainTable td {
