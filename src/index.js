@@ -1,6 +1,12 @@
 const { exec } = require('child_process');
 const { app, ipcMain, BrowserWindow } = require('electron');
 
+const isWin = /^win/.test(process.platform);
+
+if (!isWin) {
+    process.env.PATH = process.env.PATH + ':/usr/local/bin';
+}
+
 let win;
 
 function createWindow () {
@@ -27,7 +33,7 @@ function createWindow () {
         });
     };
 
-    win.once('show', () => getData());
+    win.webContents.once('dom-ready', () => getData());
 
     ipcMain.on('refresh', () => getData());
 
